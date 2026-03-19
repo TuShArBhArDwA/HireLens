@@ -1,12 +1,12 @@
 <h1 align="center">
-  <img src="https://img.icons8.com/color/96/000000/search-in-list.png" alt="HireLens Logo" />
+  <img src="./public/logo.svg" width="80" height="80" alt="HireLens Logo" />
   <br/>
   HireLens
 </h1>
 
 <p align="center">
-  <strong>AI-Powered Resume Screening System</strong><br/>
-  Automatically rank candidates, surface key strengths & gaps, and generate fit recommendations — all powered by Groq LLM.
+  <strong>Hire Smarter. Screen Faster.</strong><br/>
+  Automatically rank candidates, surface key strengths & gaps, and generate fit recommendations using an editorial AI-powered interface.
 </p>
 
 <p align="center">
@@ -184,4 +184,4 @@ If you’d like to connect, feel free to reach out — [Click here](https://mini
 
 ---
 
-**[Try HireLens](https://hirelens.vercel.app/)** | **[Submit Feedback](https://github.com/TuShArBhArDwA/HireLens/issues)**
+**[Try HireLens](https://hireelens.vercel.app/)** | **[Submit Feedback](https://github.com/TuShArBhArDwA/HireLens/issues)**
