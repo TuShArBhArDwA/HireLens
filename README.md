@@ -75,8 +75,8 @@ HireLens/
 
 | Document | Description |
 |---|---|
-| [📊 High Level Design (HLD)](./Docs/HLD.md) | System architecture, data flow, component overview, deployment model |
-| [🔧 Low Level Design (LLD)](./Docs/LLD.md) | API specs, module interfaces, DB schema, component breakdown |
+| [High Level Design (HLD)](./Docs/HLD.md) | System architecture, data flow, component overview, deployment model |
+| [Low Level Design (LLD)](./Docs/LLD.md) | API specs, module interfaces, DB schema, component breakdown |
 
 ---
 
@@ -184,4 +184,4 @@ If you’d like to connect, feel free to reach out — [Click here](https://mini
 
 ---
 
-**[Try MiniLink](https://minianonlink.vercel.app/)** | **[Submit Feedback](https://github.com/TuShArBhArDwA/MiniLink/issues)**
+**[Try HireLens](https://hirelens.vercel.app/)** | **[Submit Feedback](https://github.com/TuShArBhArDwA/HireLens/issues)**
