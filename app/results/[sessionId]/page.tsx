@@ -5,6 +5,8 @@ import { useParams, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import Navbar from '@/components/Navbar';
 import type { ScreeningSession, Candidate } from '@/lib/supabase';
+import { getInlineUrl } from '@/lib/utils';
+import { CheckCircle2, Zap, XCircle, FileText, FileSearch, Download } from 'lucide-react';
 
 function getScoreColor(score: number) {
   if (score >= 75) return 'var(--strong)';
@@ -82,8 +84,8 @@ function RecommendationBadge({ rec }: { rec: string }) {
       : rec === 'Moderate Fit'
       ? 'badge-moderate'
       : 'badge-not-fit';
-  const icon = rec === 'Strong Fit' ? '✅' : rec === 'Moderate Fit' ? '⚡' : '❌';
-  return <span className={`badge ${cls}`}>{icon} {rec}</span>;
+  const icon = rec === 'Strong Fit' ? <CheckCircle2 size={16} /> : rec === 'Moderate Fit' ? <Zap size={16} /> : <XCircle size={16} />;
+  return <span className={`badge ${cls}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>{icon} {rec}</span>;
 }
 
 function RankBadge({ rank }: { rank: number }) {
@@ -148,8 +150,14 @@ function CandidateDetailCard({ c, onClose }: { c: Candidate; onClose: () => void
 
         {c.file_url && (
           <div style={{ marginTop: 20 }}>
-            <a href={c.file_url} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>
-              📎 View Resume File
+            <a
+              href={getInlineUrl(c.file_url)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '0.85rem', padding: '8px 16px' }}
+            >
+              <FileText size={16} /> View Resume
             </a>
           </div>
         )}
@@ -214,7 +222,7 @@ export default function ResultsPage() {
         <Navbar />
         <div className="container">
           <div className="empty-state" style={{ marginTop: 60 }}>
-            <div className="empty-state-icon">😕</div>
+            <div className="empty-state-icon"><FileSearch size={48} /></div>
             <h3>Results not found</h3>
             <p>This session may have expired or doesn't exist.</p>
             <button onClick={() => router.push('/screen')} className="btn btn-primary" style={{ marginTop: 20 }}>
@@ -252,8 +260,8 @@ export default function ResultsPage() {
             </p>
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={exportCSV} className="btn btn-secondary">
-              📥 Export CSV
+            <button onClick={exportCSV} className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Download size={16} /> Export CSV
             </button>
             <button onClick={() => router.push('/screen')} className="btn btn-primary">
               + New Screening

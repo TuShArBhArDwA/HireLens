@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import Navbar from '@/components/Navbar';
+import { Loader2, UploadCloud, FileText, Search } from 'lucide-react';
 
 const SAMPLE_JD = `Senior Data Engineer – TechCorp Inc.
 
@@ -220,7 +221,7 @@ export default function ScreenPage() {
     files.forEach((f) => formData.append('files', f));
 
     try {
-      setProcessingStep('Analyzing resumes with Groq AI...');
+      setProcessingStep('Analyzing candidate profiles...');
       const res = await fetch('/api/screen', {
         method: 'POST',
         body: formData,
@@ -248,12 +249,13 @@ export default function ScreenPage() {
       <div className="container">
         <motion.div
           className="page-header"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="page-title">Screen Candidates</h1>
           <p className="page-subtitle">
-            Upload your Job Description and up to 10 resumes. AI analyzes each candidate and ranks them for you.
+            Upload your job description and up to 10 resumes. Each candidate is scored, ranked and analyzed instantly.
           </p>
         </motion.div>
 
@@ -266,21 +268,21 @@ export default function ScreenPage() {
               exit={{ opacity: 0 }}
             >
               <div className="spinner" />
-              <div>
-                <p style={{ fontFamily: 'Space Grotesk', fontSize: '1.2rem', fontWeight: 600, textAlign: 'center' }}>
-                  AI is analyzing resumes...
+              <div style={{ textAlign: 'center' }}>
+                <p style={{ fontFamily: 'Space Grotesk', fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+                  Analysing Candidates
                 </p>
                 <motion.p
-                  style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: 8, fontSize: '0.9rem' }}
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  style={{ color: 'var(--text-muted)', marginTop: 6, fontSize: '0.85rem' }}
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ repeat: Infinity, duration: 1.8 }}
                 >
                   {processingStep}
                 </motion.p>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', maxWidth: 400 }}>
-                {['Parsing resume files', 'Sending to Groq LLM', 'Scoring & ranking candidates', 'Saving to database'].map(
+                {['Parsing resume files', 'Processing candidate profiles', 'Scoring & ranking candidates', 'Saving to database'].map(
                   (step, i) => (
                     <motion.div
                       key={step}
@@ -291,10 +293,10 @@ export default function ScreenPage() {
                     >
                       <motion.span
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, delay: i * 0.4 }}
+                        transition={{ duration: 1, repeat: Infinity, delay: i * 0.4, ease: 'linear' }}
                         style={{ display: 'inline-block' }}
                       >
-                        ⚙️
+                        <Loader2 size={16} />
                       </motion.span>
                       {step}
                     </motion.div>
@@ -317,8 +319,8 @@ export default function ScreenPage() {
                 transition={{ delay: 0.1 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h2 style={{ fontFamily: 'Space Grotesk', fontSize: '1.1rem', fontWeight: 600 }}>
-                    📋 Job Description
+                  <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'Space Grotesk', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+                    <FileText size={18} style={{ color: 'var(--accent)' }} /> Job Description
                   </h2>
                   <button
                     type="button"
@@ -326,7 +328,7 @@ export default function ScreenPage() {
                     className="btn btn-outline"
                     style={{ padding: '6px 14px', fontSize: '0.8rem' }}
                   >
-                    ✨ Load Sample Data
+                    Load Sample Data
                   </button>
                 </div>
 
@@ -360,8 +362,8 @@ export default function ScreenPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 }}
               >
-                <h2 style={{ fontFamily: 'Space Grotesk', fontSize: '1.1rem', fontWeight: 600 }}>
-                  📁 Resumes{' '}
+                <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'Space Grotesk', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+                  <UploadCloud size={18} style={{ color: 'var(--accent)' }} /> Resumes{' '}
                   <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 400 }}>
                     ({files.length}/10)
                   </span>
@@ -373,7 +375,7 @@ export default function ScreenPage() {
                   className={`dropzone ${isDragActive ? 'active' : ''}`}
                 >
                   <input {...getInputProps()} />
-                  <div className="dropzone-icon">📂</div>
+                  <div className="dropzone-icon" style={{ marginBottom: 16 }}><UploadCloud size={48} /></div>
                   <p className="dropzone-text">
                     {isDragActive ? 'Drop files here...' : 'Drag & drop resumes here'}
                   </p>
@@ -404,8 +406,8 @@ export default function ScreenPage() {
                           exit={{ opacity: 0, x: -10 }}
                           transition={{ delay: idx * 0.04 }}
                         >
-                          <span style={{ fontSize: '1rem' }}>
-                            {file.name.endsWith('.pdf') ? '📄' : file.name.endsWith('.docx') ? '📝' : '📃'}
+                          <span style={{ fontSize: '1rem', display: 'flex', alignItems: 'center' }}>
+                            <FileText size={16} />
                           </span>
                           <span className="file-item-name">{file.name}</span>
                           <span className="file-item-size">{formatSize(file.size)}</span>
@@ -439,7 +441,7 @@ export default function ScreenPage() {
                         border: '1px solid rgba(239,68,68,0.2)',
                       }}
                     >
-                      ⚠️ {error}
+                      {error}
                     </motion.p>
                   )}
                 </AnimatePresence>
@@ -449,13 +451,13 @@ export default function ScreenPage() {
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    style={{ width: '100%', justifyContent: 'center', padding: '14px 24px', fontSize: '1rem' }}
+                    style={{ width: '100%', justifyContent: 'center', padding: '13px 24px', fontSize: '0.95rem', letterSpacing: '-0.01em' }}
                     disabled={isLoading || !jdText || files.length === 0}
                   >
-                    🤖 Screen {files.length > 0 ? `${files.length} Candidate${files.length > 1 ? 's' : ''}` : 'Candidates'}
+                    Screen {files.length > 0 ? `${files.length} Candidate${files.length > 1 ? 's' : ''}` : 'Candidates'}
                   </button>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: 10 }}>
-                    Powered by Groq LLM · Results in ~{Math.max(5, files.length * 2)}s
+                  <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: 10 }}>
+                    Secure & Fast Processing · Results in ~{Math.max(5, files.length * 2)}s
                   </p>
                 </motion.div>
               </motion.div>
