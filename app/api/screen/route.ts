@@ -9,6 +9,7 @@ import {
   getSessionWithCandidates,
 } from '@/lib/supabase';
 
+export const dynamic = 'force-dynamic';
 export const maxDuration = 120;
 
 interface ProcessedCandidate extends AnalysisResult {

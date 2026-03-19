@@ -224,7 +224,7 @@ export default function ResultsPage() {
           <div className="empty-state" style={{ marginTop: 60 }}>
             <div className="empty-state-icon"><FileSearch size={48} /></div>
             <h3>Results not found</h3>
-            <p>This session may have expired or doesn't exist.</p>
+            <p>This session may have expired or doesn&apos;t exist.</p>
             <button onClick={() => router.push('/screen')} className="btn btn-primary" style={{ marginTop: 20 }}>
               Start New Screening
             </button>
