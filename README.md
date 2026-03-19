@@ -10,6 +10,14 @@
 </p>
 
 <p align="center">
+  <a href="#what-it-does">What It Does</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#how-to-use">How to Use</a> •
+  <a href="https://minianonlink.vercel.app/tusharbhardwaj">Connect</a>
+</p>
+
+<p align="center">
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-14-black?logo=next.js"/>
   <img alt="Groq" src="https://img.shields.io/badge/Groq-llama--3.3--70b-orange"/>
   <img alt="Supabase" src="https://img.shields.io/badge/Supabase-PostgreSQL-green?logo=supabase"/>
@@ -99,10 +107,10 @@ npm install
 Copy and fill in your API keys:
 
 ```bash
-cp .env.local .env.local.filled
+cp .env.example .env.local
 ```
 
-Edit `.env.local` with your keys for Clerk, Supabase, Groq, and Cloudinary. See `.env.local` for the full list of variables.
+Edit `.env.local` with your keys for Clerk, Supabase, Groq, and Cloudinary.
 
 ### 3. Set Up Supabase
 
