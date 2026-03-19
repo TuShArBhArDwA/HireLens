@@ -1,0 +1,20 @@
+Raj Patel | raj.patel@email.com | linkedin.com/in/rajpatel | Bangalore, India
+
+EXPERIENCE
+Senior Data Engineer – CloudData Corp (2020–Present)
+- Designed BigQuery pipelines processing 500GB+ daily across 20+ source systems
+- Built Apache Spark batch processing jobs on Dataproc for large-scale data transformations
+- Implemented Airflow orchestration with 30+ production DAGs, maintained 99.5% SLA
+- Introduced dbt for transformation layer across 5 data marts
+- Collaborated closely with ML team to build feature store in BigQuery
+
+Data Engineer – FinTech Solutions (2018–2020)
+- Python ETL automation reducing manual reporting time by 70%
+- SQL query optimization on PostgreSQL and Redshift
+- Basic AWS Glue for data catalog management
+
+TECHNICAL SKILLS:
+Python, SQL, Apache Spark, Apache Airflow, Google BigQuery, Snowflake (basic), dbt, GCP (Dataproc, Composer, Pub/Sub), AWS (Glue, S3, Redshift), PostgreSQL, Git
+
+EDUCATION:
+B.Tech Computer Science – IIT Bombay (2018)

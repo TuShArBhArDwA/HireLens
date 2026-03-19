@@ -1,0 +1,19 @@
+Nina Okafor | nina.okafor@email.com | linkedin.com/in/ninaokafor | New York, NY
+
+EXPERIENCE
+Business Analyst – Management Consulting Firm (2020–Present)
+- Requirements gathering and stakeholder interviews for digital transformation projects
+- Process documentation, gap analysis, and change management
+- Created Power BI dashboards for operational KPIs
+- Ran SQL queries on data warehouse for ad-hoc business analysis
+- Managed project timelines via Jira and Confluence
+
+Junior Business Analyst – Insurance Company (2018–2020)
+- Excel reporting, pivot table analysis, monthly business reviews
+- Basic process automation using Excel macros (VBA)
+
+TECHNICAL SKILLS:
+SQL (basic – SELECT, JOIN, GROUP BY), Microsoft Excel (VBA, Pivot Tables), Power BI, Tableau, Jira, Confluence, Microsoft Office Suite, Salesforce (basic)
+
+EDUCATION:
+B.A. Business Administration – Fordham University (2018)

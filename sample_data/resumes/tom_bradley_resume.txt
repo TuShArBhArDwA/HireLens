@@ -1,0 +1,20 @@
+Tom Bradley | tom.b@email.com | linkedin.com/in/tombradley | Dallas, TX
+
+EXPERIENCE
+IT Systems Administrator – Manufacturing Co. (2018–Present)
+- Manage on-premise Windows Server infrastructure (50+ servers)
+- Network configuration, firewall management, VPN setup
+- Run ad-hoc SQL queries on MS SQL Server for operational reporting
+- Maintain Excel-based inventory and tracking systems
+- Coordinated with vendors for hardware procurement
+
+IT Help Desk Technician – Retail Chain (2015–2018)
+- Level 2 technical support, ticket resolution
+- Hardware troubleshooting and software installation
+
+TECHNICAL SKILLS:
+SQL (MS SQL Server, basic SELECT/JOIN queries), Excel (Advanced), Windows Server 2019, Active Directory, VMware, Cisco networking, PowerShell (basic)
+
+EDUCATION:
+Associate Degree in Information Technology – Dallas Community College (2015)
+CompTIA A+ Certified, CompTIA Network+ Certified

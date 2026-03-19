@@ -1,0 +1,19 @@
+Sofia Martinez | sofia.m@email.com | linkedin.com/in/sofiamartinez | Austin, TX
+
+EXPERIENCE
+Data Engineer – RetailCo (2021–Present)
+- Migrated legacy Excel/SQL reporting to Python-based Airflow DAGs
+- Built Redshift data warehouse using dimensional modeling and star schema design
+- Started working with Apache Spark for big data processing (6 months experience)
+- Created automated data quality checks using Great Expectations
+
+Data Analyst – E-commerce Startup (2019–2021)
+- Advanced SQL for business intelligence reporting
+- Python scripting for data extraction and transformation
+- Built Tableau and Power BI dashboards for executive reporting
+
+TECHNICAL SKILLS:
+Python, SQL, Apache Airflow, Amazon Redshift, Tableau, Power BI, AWS (S3, Lambda), Apache Spark (learning), dbt (basic), Git, Great Expectations
+
+EDUCATION:
+B.S. Data Science – UC San Diego (2019)

@@ -1,0 +1,25 @@
+Senior Data Engineer – TechCorp Inc.
+
+We are looking for a Senior Data Engineer to join our data platform team.
+
+RESPONSIBILITIES:
+- Design, build, and maintain scalable data pipelines using Apache Spark and Airflow
+- Work with data scientists to deliver production-grade ML feature pipelines
+- Architect and optimize data warehouses on Snowflake and BigQuery
+- Build real-time streaming pipelines using Apache Kafka
+- Ensure data quality, lineage, and governance across all data products
+- Mentor junior engineers and participate in architecture reviews
+
+REQUIREMENTS:
+- 5+ years of experience in data engineering
+- Strong proficiency in Python and SQL
+- Hands-on experience with Spark, Airflow, and Kafka
+- Familiarity with cloud platforms (AWS, GCP, or Azure)
+- Experience with dbt for data transformation
+- Knowledge of data modeling and dimensional design
+- Bachelor's or Master's degree in Computer Science or related field
+
+NICE TO HAVE:
+- Experience with Kubernetes and Docker
+- Knowledge of ML pipelines (MLflow, Kubeflow)
+- Contributions to open-source data tools

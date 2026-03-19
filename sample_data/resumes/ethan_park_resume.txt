@@ -1,0 +1,20 @@
+Ethan Park | ethan.park@email.com | linkedin.com/in/ethanpark | Los Angeles, CA
+
+EXPERIENCE
+Recent Graduate – Seeking First Role (2024)
+
+Coursework Projects:
+- Built a Python web scraper to collect product data from e-commerce websites (BeautifulSoup, requests)
+- SQL assignment: wrote basic queries (SELECT, JOIN, GROUP BY) on a university database
+- Analyzed CSV datasets using Pandas in Jupyter Notebook for a statistics class
+- Created a simple Flask web app as a final year project
+
+Part-time Retail Associate – Best Buy (2021–2024)
+- Customer service, inventory management, sales
+
+TECHNICAL SKILLS:
+Python (beginner – 1 year), SQL (basic), Excel, Pandas (basic), Flask (basic), Git (basic), HTML/CSS
+
+EDUCATION:
+B.S. Information Systems – Los Angeles Community College (2024)
+GPA: 3.1

@@ -1,0 +1,19 @@
+James Williams | j.williams@email.com | linkedin.com/in/jameswilliams | Chicago, IL
+
+EXPERIENCE
+Backend Engineer – SaaS Company (2019–Present)
+- Built and maintained REST APIs with Python (FastAPI, Django)
+- Designed PostgreSQL schemas and optimized complex queries
+- Wrote Python scripts for data extraction and basic ETL automation
+- AWS Lambda functions as lightweight event-driven pipelines
+- Some work with Pandas for internal data reporting
+
+Software Engineer – Web Agency (2017–2019)
+- Full-stack web development using Django, React, MySQL
+- Basic CI/CD with Jenkins and Docker
+
+TECHNICAL SKILLS:
+Python, SQL, PostgreSQL, MySQL, FastAPI, Django, AWS (Lambda, S3, EC2), Docker (basic), Git, Pandas, REST APIs
+
+EDUCATION:
+B.S. Software Engineering – University of Illinois (2017)

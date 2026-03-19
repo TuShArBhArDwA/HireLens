@@ -1,0 +1,22 @@
+Alice Chen | alice.chen@email.com | linkedin.com/in/alicechen | San Francisco, CA
+
+EXPERIENCE
+Senior Data Engineer – DataSystems Inc. (2021–Present)
+- Built real-time Kafka streaming pipelines processing 2M events/day with sub-second latency
+- Led migration of 50+ Airflow DAGs to Cloud Composer on GCP, reducing failure rate by 40%
+- Designed Snowflake data warehouse with dbt transformations for 15 business domains
+- Mentored 3 junior data engineers; led architecture review board
+
+Data Engineer – StartupAI (2019–2021)
+- Developed Spark ETL pipelines on AWS EMR processing 5TB daily
+- Built ML feature pipelines feeding production XGBoost and LightGBM models
+
+Data Engineering Intern – DataCo (2018)
+- Python scripting for data extraction and load pipelines
+
+TECHNICAL SKILLS:
+Python, SQL, Apache Spark, Apache Kafka, Apache Airflow, Snowflake, BigQuery, dbt, GCP (Composer, Dataflow, Dataproc), AWS (EMR, S3, Glue), Docker, Kubernetes, MLflow, Git
+
+EDUCATION:
+M.S. Computer Science – Stanford University (2019)
+B.S. Computer Science – UC Berkeley (2017)

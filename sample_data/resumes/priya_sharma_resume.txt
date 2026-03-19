@@ -1,0 +1,19 @@
+Priya Sharma | priya.sharma@email.com | linkedin.com/in/priyasharma | Seattle, WA
+
+EXPERIENCE
+Junior Data Engineer – Analytics Firm (2022–Present)
+- Built Spark-based batch processing jobs on AWS EMR for daily data loads
+- PostgreSQL and Redshift query optimization for reporting
+- Basic Airflow DAG creation and scheduling (inherited from senior engineer)
+- Wrote Python scripts for data validation and monitoring
+
+Data Science Intern → Junior DE – ML Startup (2021–2022)
+- Python data analysis using pandas and scikit-learn
+- Assisted in building ML feature pipelines for recommendation system
+
+TECHNICAL SKILLS:
+Python, SQL, Apache Spark (intermediate), Amazon Redshift, AWS (EMR, S3), Pandas, NumPy, Apache Airflow (basic), Git
+
+EDUCATION:
+M.S. Data Science – University of Michigan (2022)
+B.Tech Information Technology – NIT Trichy (2020)

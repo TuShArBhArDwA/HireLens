@@ -1,0 +1,30 @@
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME!,
+  api_key: process.env.CLOUDINARY_API_KEY!,
+  api_secret: process.env.CLOUDINARY_API_SECRET!,
+});
+
+export async function uploadResumeBuffer(
+  buffer: Buffer,
+  filename: string
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        folder: 'hirelens/resumes',
+        public_id: `${Date.now()}_${filename.replace(/\.[^/.]+$/, '')}`,
+        resource_type: 'raw',
+      },
+      (error, result) => {
+        if (error || !result) {
+          reject(error || new Error('Upload failed'));
+        } else {
+          resolve(result.secure_url);
+        }
+      }
+    );
+    uploadStream.end(buffer);
+  });
+}
