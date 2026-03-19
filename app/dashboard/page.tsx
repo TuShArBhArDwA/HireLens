@@ -5,19 +5,16 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import Navbar from '@/components/Navbar';
 import type { ScreeningSession } from '@/lib/supabase';
-import { Search, ArrowRight, Clock } from 'lucide-react';
+import { Search, ArrowRight, Clock, FileText } from 'lucide-react';
 
 interface SessionSummary extends ScreeningSession {
   candidateCount?: number;
   topScore?: number;
 }
 
-const staggerContainer = {
-  animate: { transition: { staggerChildren: 0.07 } },
-};
-
+const stagger = { animate: { transition: { staggerChildren: 0.065 } } };
 const rowVariant = {
-  initial: { opacity: 0, y: 12 },
+  initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] } },
 };
 
@@ -28,31 +25,29 @@ export default function DashboardPage() {
   useEffect(() => {
     fetch('/api/sessions')
       .then((r) => r.json())
-      .then((data) => {
-        setSessions(data.sessions || []);
-        setLoading(false);
-      })
+      .then((data) => { setSessions(data.sessions || []); setLoading(false); })
       .catch(() => setLoading(false));
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', paddingBottom: 60 }}>
+    <div style={{ minHeight: '100vh', paddingBottom: 80 }}>
       <Navbar />
 
       <div className="container">
         <motion.div
           className="page-header"
-          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-          initial={{ opacity: 0, y: 16 }}
+          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.4 }}
         >
           <div>
+            <div className="section-label" style={{ marginBottom: 6 }}>Overview</div>
             <h1 className="page-title">Dashboard</h1>
-            <p className="page-subtitle">Your past screening sessions</p>
+            <p className="page-subtitle">Your screening session history</p>
           </div>
           <Link href="/screen" className="btn btn-primary">
-            New Screening <ArrowRight size={15} />
+            New Screening <ArrowRight size={14} />
           </Link>
         </motion.div>
 
@@ -68,52 +63,65 @@ export default function DashboardPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="empty-state-icon">
-              <Search size={44} />
-            </div>
+            <div className="empty-state-icon"><Search size={44} /></div>
             <h3>No screenings yet</h3>
-            <p>Start your first candidate screening to see results here.</p>
+            <p>Run your first screening to see candidate results here.</p>
             <Link href="/screen" className="btn btn-primary" style={{ marginTop: 24, display: 'inline-flex' }}>
-              Screen Candidates <ArrowRight size={15} />
+              Screen Candidates <ArrowRight size={14} />
             </Link>
           </motion.div>
         ) : (
-          <motion.div
-            className="session-list"
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            {sessions.map((s) => (
-              <motion.div key={s.id} variants={rowVariant}>
-                <Link href={`/results/${s.id}`} className="session-item">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                    <div style={{
-                      width: 36, height: 36, borderRadius: 10,
-                      background: 'rgba(79,70,229,0.1)', display: 'flex',
-                      alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                    }}>
-                      <Search size={16} style={{ color: 'var(--accent)' }} />
+          <>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: 14 }}
+            >
+              {sessions.length} session{sessions.length !== 1 ? 's' : ''}
+            </motion.p>
+            <motion.div
+              className="session-list"
+              variants={stagger}
+              initial="initial"
+              animate="animate"
+            >
+              {sessions.map((s) => (
+                <motion.div key={s.id} variants={rowVariant}>
+                  <Link href={`/results/${s.id}`} className="session-item">
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                      <div style={{
+                        width: 44, height: 44, borderRadius: 12,
+                        background: 'var(--accent-light)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                      }}>
+                        <FileText size={20} style={{ color: 'var(--accent)' }} />
+                      </div>
+                      <div className="session-arrow"><ArrowRight size={16} /></div>
                     </div>
-                    <div>
-                      <div className="session-title">{s.jd_title}</div>
-                      <div className="session-meta" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                        <Clock size={11} />
+                    
+                    <div style={{ flex: 1, minWidth: 0, marginTop: 4 }}>
+                      <div className="session-title" style={{
+                        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      }}>
+                        {s.jd_title}
+                      </div>
+                    </div>
+
+                    <div style={{ paddingTop: 16, borderTop: '1px solid var(--border)' }}>
+                      <div className="session-meta">
+                        <Clock size={13} />
                         {new Date(s.created_at).toLocaleDateString('en-US', {
                           day: 'numeric', month: 'short', year: 'numeric',
                           hour: '2-digit', minute: '2-digit',
                         })}
                       </div>
                     </div>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>View Results</span>
-                    <span className="session-arrow"><ArrowRight size={16} /></span>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
         )}
       </div>
     </div>

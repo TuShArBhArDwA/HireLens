@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import Navbar from '@/components/Navbar';
-import { Loader2, UploadCloud, FileText } from 'lucide-react';
+import { Loader2, UploadCloud, FileText, Trash2 } from 'lucide-react';
 
 const SAMPLE_JD = `Senior Data Engineer – TechCorp Inc.
 
@@ -247,87 +247,42 @@ export default function ScreenPage() {
     <div style={{ minHeight: '100vh' }}>
       <Navbar />
       <div className="container">
-        <motion.div
-          className="page-header"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h1 className="page-title">Screen Candidates</h1>
-          <p className="page-subtitle">
-            Upload your job description and up to 10 resumes. Each candidate is scored, ranked and analyzed instantly.
-          </p>
-        </motion.div>
-
-        <AnimatePresence>
-          {isLoading ? (
+        <AnimatePresence mode="wait">
+          {!isLoading ? (
             <motion.div
-              className="loading-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              key="form-content"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="spinner" />
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontFamily: 'Space Grotesk', fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-                  Analysing Candidates
+              <div className="page-header" style={{ marginBottom: 32 }}>
+                <div className="section-label" style={{ marginBottom: 6 }}>New Evaluation</div>
+                <h1 className="page-title">Screen Candidates</h1>
+                <p className="page-subtitle">
+                  Upload your job description and up to 10 resumes. Each candidate is scored, ranked and analyzed instantly.
                 </p>
-                <motion.p
-                  style={{ color: 'var(--text-muted)', marginTop: 6, fontSize: '0.85rem' }}
-                  animate={{ opacity: [0.4, 1, 0.4] }}
-                  transition={{ repeat: Infinity, duration: 1.8 }}
-                >
-                  {processingStep}
-                </motion.p>
               </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%', maxWidth: 400 }}>
-                {['Parsing resume files', 'Processing candidate profiles', 'Scoring & ranking candidates', 'Saving to database'].map(
-                  (step, i) => (
-                    <motion.div
-                      key={step}
-                      className="processing-step"
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.4 }}
-                    >
-                      <motion.span
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, delay: i * 0.4, ease: 'linear' }}
-                        style={{ display: 'inline-block' }}
-                      >
-                        <Loader2 size={16} />
-                      </motion.span>
-                      {step}
-                    </motion.div>
-                  )
-                )}
-              </div>
-            </motion.div>
-          ) : (
-            <motion.form
-              onSubmit={handleSubmit}
-              style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, paddingBottom: 60 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {/* Left: JD Input */}
+              <form
+                onSubmit={handleSubmit}
+                className="screen-layout"
+                style={{ paddingBottom: 80 }}
+              >
+                {/* Left: JD Input */}
               <motion.div
-                style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
-                initial={{ opacity: 0, x: -20 }}
+                style={{ display: 'flex', flexDirection: 'column', gap: 24, position: 'sticky', top: 90 }}
+                initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'Space Grotesk', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-                    <FileText size={18} style={{ color: 'var(--accent)' }} /> Job Description
-                  </h2>
-                  <button
-                    type="button"
-                    onClick={loadSampleData}
-                    className="btn btn-outline"
-                    style={{ padding: '6px 14px', fontSize: '0.8rem' }}
-                  >
+                  <div className="section-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <div style={{ padding: 6, background: 'var(--accent-light)', borderRadius: 8 }}>
+                      <FileText size={16} style={{ color: 'var(--accent)' }} />
+                    </div>
+                    Job Description
+                  </div>
+                  <button type="button" onClick={loadSampleData} className="btn btn-outline btn-sm">
                     Load Sample Data
                   </button>
                 </div>
@@ -342,14 +297,14 @@ export default function ScreenPage() {
                   />
                 </div>
 
-                <div className="form-group" style={{ flex: 1 }}>
-                  <label className="form-label">Job Description</label>
+                <div className="form-group">
+                  <label className="form-label">Job Details</label>
                   <textarea
                     className="form-textarea"
                     value={jdText}
                     onChange={(e) => setJdText(e.target.value)}
                     placeholder="Paste your full job description here — responsibilities, requirements, nice-to-haves..."
-                    style={{ minHeight: 380 }}
+                    style={{ minHeight: 400 }}
                     required
                   />
                 </div>
@@ -357,34 +312,30 @@ export default function ScreenPage() {
 
               {/* Right: Resume Upload */}
               <motion.div
-                style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
-                initial={{ opacity: 0, x: 20 }}
+                style={{ display: 'flex', flexDirection: 'column', gap: 24 }}
+                initial={{ opacity: 0, x: 16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.15 }}
               >
-                <h2 style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'Space Grotesk', fontSize: '1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-                  <UploadCloud size={18} style={{ color: 'var(--accent)' }} /> Resumes{' '}
-                  <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 400 }}>
+                <div className="section-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ padding: 6, background: 'var(--accent-light)', borderRadius: 8 }}>
+                    <UploadCloud size={16} style={{ color: 'var(--accent)' }} />
+                  </div>
+                  Candidate Resumes
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem', fontWeight: 500, marginLeft: 4 }}>
                     ({files.length}/10)
                   </span>
-                </h2>
+                </div>
 
                 {/* Dropzone */}
-                <div
-                  {...getRootProps()}
-                  className={`dropzone ${isDragActive ? 'active' : ''}`}
-                >
+                <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : ''}`}>
                   <input {...getInputProps()} />
-                  <div className="dropzone-icon" style={{ marginBottom: 16 }}><UploadCloud size={48} /></div>
+                  <div className="dropzone-icon" style={{ marginBottom: 12 }}><UploadCloud size={40} /></div>
                   <p className="dropzone-text">
                     {isDragActive ? 'Drop files here...' : 'Drag & drop resumes here'}
                   </p>
                   <p className="dropzone-sub">PDF, DOCX, TXT · Max 10 files · 5MB each</p>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    style={{ marginTop: 16, fontSize: '0.85rem', padding: '8px 16px' }}
-                  >
+                  <button type="button" className="btn btn-secondary btn-sm" style={{ marginTop: 16 }}>
                     Browse Files
                   </button>
                 </div>
@@ -392,32 +343,18 @@ export default function ScreenPage() {
                 {/* File List */}
                 <AnimatePresence>
                   {files.length > 0 && (
-                    <motion.div
-                      className="file-list"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                    >
+                    <motion.div className="file-list" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                       {files.map((file, idx) => (
                         <motion.div
-                          key={`${file.name}-${idx}`}
-                          className="file-item"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -10 }}
-                          transition={{ delay: idx * 0.04 }}
+                          key={`${file.name}-${idx}`} className="file-item"
+                          initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ delay: idx * 0.03 }}
                         >
-                          <span style={{ fontSize: '1rem', display: 'flex', alignItems: 'center' }}>
-                            <FileText size={16} />
-                          </span>
+                          <FileText size={15} style={{ color: 'var(--text-muted)' }} />
                           <span className="file-item-name">{file.name}</span>
                           <span className="file-item-size">{formatSize(file.size)}</span>
-                          <button
-                            type="button"
-                            className="file-item-remove"
-                            onClick={() => removeFile(idx)}
-                            title="Remove"
-                          >
-                            ×
+                          <button type="button" className="file-item-remove" onClick={() => removeFile(idx)} title="Remove">
+                            <Trash2 size={14} />
                           </button>
                         </motion.div>
                       ))}
@@ -428,40 +365,110 @@ export default function ScreenPage() {
                 {/* Error */}
                 <AnimatePresence>
                   {error && (
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      style={{
-                        color: 'var(--not-fit)',
-                        fontSize: '0.85rem',
-                        padding: '10px 14px',
-                        background: 'rgba(239,68,68,0.08)',
-                        borderRadius: 8,
-                        border: '1px solid rgba(239,68,68,0.2)',
-                      }}
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+                      style={{ color: 'var(--not-fit)', fontSize: '0.82rem', padding: '12px 14px', background: 'rgba(239,68,68,0.08)', borderRadius: 8, border: '1px solid rgba(239,68,68,0.2)' }}
                     >
                       {error}
-                    </motion.p>
+                    </motion.div>
                   )}
                 </AnimatePresence>
 
                 {/* Submit */}
-                <motion.div style={{ marginTop: 'auto' }}>
+                <div style={{ marginTop: 'auto', paddingTop: 16 }}>
                   <button
-                    type="submit"
-                    className="btn btn-primary"
-                    style={{ width: '100%', justifyContent: 'center', padding: '13px 24px', fontSize: '0.95rem', letterSpacing: '-0.01em' }}
+                    type="submit" className="btn btn-primary btn-lg"
+                    style={{ width: '100%', justifyContent: 'center' }}
                     disabled={isLoading || !jdText || files.length === 0}
                   >
                     Screen {files.length > 0 ? `${files.length} Candidate${files.length > 1 ? 's' : ''}` : 'Candidates'}
                   </button>
-                  <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: 10 }}>
+                  <p style={{ fontSize: '0.74rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: 12 }}>
                     Secure & Fast Processing · Results in ~{Math.max(5, files.length * 2)}s
                   </p>
-                </motion.div>
+                </div>
               </motion.div>
-            </motion.form>
+            </form>
+          </motion.div>
+        ) : (
+            <motion.div
+              key="loading-view"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                minHeight: '75vh', position: 'relative'
+              }}
+            >
+              {/* Background glowing orbs exclusively for loading phase */}
+              <div style={{
+                position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                width: 600, height: 600, background: 'radial-gradient(circle, rgba(79,70,229,0.1) 0%, transparent 60%)',
+                filter: 'blur(50px)', pointerEvents: 'none', zIndex: -1
+              }} />
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                style={{ textAlign: 'center', marginBottom: 48, position: 'relative' }}
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    position: 'absolute', top: -30, left: '50%', transform: 'translateX(-50%)',
+                    width: 140, height: 140, background: 'var(--accent)', filter: 'blur(60px)', opacity: 0.15, zIndex: -1
+                  }}
+                />
+                <h2 style={{ fontFamily: 'var(--font-space-grotesk)', fontSize: '2.4rem', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--text-primary)' }}>
+                  Analysing Profiles
+                </h2>
+                <p style={{ color: 'var(--text-muted)', marginTop: 12, fontSize: '1.05rem', maxWidth: 400, marginInline: 'auto' }}>
+                  Our AI is intelligently reviewing <strong style={{ color: 'var(--text-primary)' }}>{files.length} resume{files.length !== 1 ? 's' : ''}</strong> against your job description constraints.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  padding: '24px 28px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255,255,255,0.08)',
+                  backdropFilter: 'blur(12px)', borderRadius: 16, display: 'flex', alignItems: 'center', gap: 20, width: '100%', maxWidth: 420,
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                }}
+              >
+                <div style={{ position: 'relative', display: 'flex' }}>
+                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }} style={{ display: 'flex', zIndex: 1 }}>
+                    <Loader2 size={24} style={{ color: 'var(--accent)' }} />
+                  </motion.div>
+                  <motion.div
+                    animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ position: 'absolute', inset: -8, background: 'var(--accent)', borderRadius: '50%', zIndex: 0, opacity: 0.2 }}
+                  />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={processingStep}
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                    >
+                      {processingStep}
+                    </motion.div>
+                  </AnimatePresence>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: 4 }}>
+                    Processing securely on our servers
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>

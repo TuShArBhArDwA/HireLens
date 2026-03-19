@@ -12,20 +12,22 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <Link href="/" className="navbar-logo">
-        <Search size={20} />
+        <Search size={18} strokeWidth={2.5} />
         <span>HireLens</span>
       </Link>
       <div className="navbar-links">
         <ThemeToggle />
-        <div style={{ width: 1, height: 16, background: 'var(--border)', margin: '0 4px' }} />
+        <div className="nav-divider" />
         <Link href="/screen" className={`nav-link ${pathname === '/screen' ? 'active' : ''}`}>
           Screen
         </Link>
         <Link href="/dashboard" className={`nav-link ${pathname === '/dashboard' ? 'active' : ''}`}>
           Dashboard
         </Link>
-        <div style={{ width: 1, height: 16, background: 'var(--border)', margin: '0 4px' }} />
-        <UserButton afterSignOutUrl="/" />
+        <div className="nav-divider" />
+        <div style={{ marginLeft: 6, display: 'flex', alignItems: 'center' }}>
+          <UserButton afterSignOutUrl="/" appearance={{ elements: { userButtonAvatarBox: { width: 30, height: 30 } } }} />
+        </div>
       </div>
     </nav>
   );

@@ -15,7 +15,7 @@ export async function uploadResumeBuffer(
       {
         folder: 'hirelens/resumes',
         public_id: `${Date.now()}_${filename.replace(/\.[^/.]+$/, '')}`,
-        resource_type: 'auto',  // let Cloudinary auto-detect (PDF, DOCX, etc.)
+        resource_type: 'raw',  // must be 'raw' so the URL serves actual PDF bytes
       },
       (error, result) => {
         if (error || !result) {
@@ -29,15 +29,3 @@ export async function uploadResumeBuffer(
   });
 }
 
-/**
- * Converts a Cloudinary raw/auto URL to a browser-viewable inline URL.
- * For PDFs: replaces /raw/upload/ with /image/upload/fl_attachment:false/
- * For others: returns as-is.
- */
-export function getInlineUrl(url: string): string {
-  if (!url) return url;
-  // Convert raw upload URL to inline-viewable by inserting fl_attachment:false flag
-  return url
-    .replace('/raw/upload/', '/image/upload/fl_attachment:false/')
-    .replace('/auto/upload/', '/image/upload/fl_attachment:false/');
-}
