@@ -1,16 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '@clerk/nextjs';
-import { Search, FileText, Bot, BarChart3, ArrowRight, CheckCircle2, Plus, X } from 'lucide-react';
+import { Search, FileText, Bot, BarChart3, ArrowRight, CheckCircle2, Plus, X, UploadCloud, Zap } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
 });
 
 const features = [
@@ -43,6 +43,14 @@ const howItWorks = [
 export default function LandingPage() {
   const { isSignedIn } = useAuth();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % 3);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <main style={{ background: 'var(--bg)', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
@@ -93,15 +101,15 @@ export default function LandingPage() {
           <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Built for speed, accuracy, and calm recruiting</span>
         </motion.div>
 
-        <motion.h1 
-          className="hero-title" 
+        <motion.h1
+          className="hero-title"
           {...fadeUp(0.16)}
-          style={{ 
+          style={{
             fontFamily: 'var(--font-space-grotesk)',
-            fontSize: 'var(--fs-hero)', 
-            lineHeight: 1.05, 
-            textAlign: 'center', 
-            maxWidth: 1000, 
+            fontSize: 'var(--fs-hero)',
+            lineHeight: 1.05,
+            textAlign: 'center',
+            maxWidth: 1000,
             marginBottom: 24,
             fontWeight: 800,
             letterSpacing: '-0.04em'
@@ -110,14 +118,14 @@ export default function LandingPage() {
           Screen better talent,<br />without cluttering your flow.
         </motion.h1>
 
-        <motion.p 
-          className="hero-subtitle" 
+        <motion.p
+          className="hero-subtitle"
           {...fadeUp(0.24)}
-          style={{ 
-            fontSize: '1.25rem', 
-            color: 'var(--text-secondary)', 
-            maxWidth: 600, 
-            textAlign: 'center', 
+          style={{
+            fontSize: '1.25rem',
+            color: 'var(--text-secondary)',
+            maxWidth: 600,
+            textAlign: 'center',
             lineHeight: 1.5,
             marginBottom: 40
           }}
@@ -129,12 +137,12 @@ export default function LandingPage() {
           <Link
             href={isSignedIn ? '/screen' : '/sign-up'}
             className="btn"
-            style={{ 
-              background: 'var(--accent)', 
-              color: '#fff', 
-              padding: '12px 28px', 
-              borderRadius: 12, 
-              fontWeight: 600, 
+            style={{
+              background: 'var(--accent)',
+              color: '#fff',
+              padding: '12px 28px',
+              borderRadius: 12,
+              fontWeight: 600,
               fontSize: '1rem',
               display: 'flex',
               alignItems: 'center',
@@ -146,13 +154,13 @@ export default function LandingPage() {
           <Link
             href={isSignedIn ? '/dashboard' : '/sign-in'}
             className="btn"
-            style={{ 
-              background: 'var(--bg)', 
-              border: '1px solid var(--border)', 
-              color: 'var(--text-primary)', 
-              padding: '12px 28px', 
-              borderRadius: 12, 
-              fontWeight: 600, 
+            style={{
+              background: 'var(--bg)',
+              border: '1px solid var(--border)',
+              color: 'var(--text-primary)',
+              padding: '12px 28px',
+              borderRadius: 12,
+              fontWeight: 600,
               fontSize: '1rem'
             }}
           >
@@ -163,9 +171,9 @@ export default function LandingPage() {
 
       {/* ── Demo Video ─────────────────────────────────────────────── */}
       <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 32px 120px', position: 'relative', zIndex: 1 }}>
-        <div style={{ 
-          border: '1px solid var(--border)', 
-          borderRadius: 32, 
+        <div style={{
+          border: '1px solid var(--border)',
+          borderRadius: 32,
           padding: '80px 60px',
           background: 'var(--bg-card)',
           backdropFilter: 'blur(10px)',
@@ -177,10 +185,10 @@ export default function LandingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 style={{ 
-              fontFamily: 'var(--font-space-grotesk)', 
-              fontSize: 'var(--fs-h2)', 
-              fontWeight: 800, 
+            <h2 style={{
+              fontFamily: 'var(--font-space-grotesk)',
+              fontSize: 'var(--fs-h2)',
+              fontWeight: 800,
               color: 'var(--text-primary)',
               letterSpacing: '-0.03em',
               marginBottom: 12
@@ -194,7 +202,7 @@ export default function LandingPage() {
 
           <div style={{ position: 'relative' }}>
             {/* Soft background glow */}
-            <div style={{ 
+            <div style={{
               position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
               width: '80%', height: '80%', background: 'var(--accent)', filter: 'blur(120px)', opacity: 0.1, zIndex: -1
             }} />
@@ -272,10 +280,10 @@ export default function LandingPage() {
 
       {/* ── How It Works (Split Layout) ─────────────────────────────── */}
       <section style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div style={{ 
-          background: 'var(--bg-card)', 
+        <div style={{
+          background: 'var(--bg-card)',
           backdropFilter: 'blur(10px)',
-          border: '1px solid var(--border)', 
+          border: '1px solid var(--border)',
           borderRadius: 32,
           padding: '80px 60px',
           display: 'grid',
@@ -287,72 +295,166 @@ export default function LandingPage() {
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: 12 }}>
               Daily Workflow
             </div>
-            <h2 style={{ 
+            <h2 style={{
               fontFamily: 'var(--font-space-grotesk)',
-              fontSize: '2.5rem', 
-              fontWeight: 800, 
-              lineHeight: 1.1, 
-              letterSpacing: '-0.04em', 
-              marginBottom: 24 
+              fontSize: '2.5rem',
+              fontWeight: 800,
+              lineHeight: 1.1,
+              letterSpacing: '-0.04em',
+              marginBottom: 24
             }}>
               A lightweight system that feels native to recruiting.
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: 40 }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: 40, opacity: 0.8 }}>
               The interface stays quiet while the AI does the heavy lifting. You keep your focus, and the candidate knowledge stays reusable.
             </p>
-            
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-              {howItWorks.map((item) => (
-                <div key={item.step} style={{ display: 'flex', gap: 20 }}>
-                  <div style={{ fontWeight: 800, fontSize: '1.2rem', color: 'var(--text-muted)', paddingTop: 2 }}>{item.step}.</div>
+              {howItWorks.map((item, idx) => (
+                <motion.div
+                  key={item.step}
+                  style={{
+                    display: 'flex',
+                    gap: 20,
+                    opacity: activeStep === idx ? 1 : 0.3,
+                    scale: activeStep === idx ? 1.02 : 1,
+                    transition: 'all 0.5s cubic-bezier(0.22, 1, 0.36, 1)'
+                  }}
+                >
+                  <div style={{
+                    fontWeight: 800,
+                    fontSize: '1.2rem',
+                    color: activeStep === idx ? 'var(--accent)' : 'var(--text-muted)',
+                    paddingTop: 2
+                  }}>
+                    {item.step}.
+                  </div>
                   <div>
-                    <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4 }}>{item.title}</h4>
+                    <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4, color: activeStep === idx ? 'var(--text-primary)' : 'var(--text-muted)' }}>{item.title}</h4>
                     <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
-          <div style={{ position: 'relative' }}>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              style={{
-                background: '#0a0a0b',
-                borderRadius: 24,
-                padding: '32px',
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: '0 40px 80px rgba(0,0,0,0.3)'
-              }}
-            >
-              {/* Fake UI Snippet */}
-              <div style={{ display: 'flex', gap: 6, marginBottom: 24 }}>
-                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
-                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
-                <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
-              </div>
-              <div style={{ color: '#fff', fontFamily: 'monospace', fontSize: '0.85rem', lineHeight: 1.8 }}>
-                <div style={{ color: 'var(--accent)' }}>{'// Initialize screening'}</div>
-                <div>const session = await HireLens.init();</div>
-                <div style={{ color: '#aaa', marginTop: 12 }}>{'// Upload 12 resumes'}</div>
-                <div>await session.upload(resumes);</div>
-                <div style={{ color: '#aaa', marginTop: 12 }}>{'// Instant rankings'}</div>
-                <div>const results = await session.getRankings();</div>
-                <div style={{ color: '#28c840', marginTop: 12 }}>✓ Screening completed in 4.2s</div>
-              </div>
-            </motion.div>
+          <div style={{ position: 'relative', height: 420 }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, x: 20, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -20, scale: 0.95 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                  height: '100%',
+                  background: '#0a0a0b',
+                  borderRadius: 24,
+                  padding: '32px',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  boxShadow: '0 40px 80px rgba(0,0,0,0.3)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div style={{ display: 'flex', gap: 6, marginBottom: 24 }}>
+                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#febc2e' }} />
+                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
+                </div>
+
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  {activeStep === 0 && (
+                    <div style={{ color: '#fff', fontFamily: 'monospace', fontSize: '0.9rem', lineHeight: 1.8 }}>
+                      <div style={{ color: 'var(--accent)', marginBottom: 12 }}>{'// Step 1: Initialize Job Context'}</div>
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 1.5, ease: "linear" }}
+                        style={{ overflow: 'hidden', whiteSpace: 'nowrap', borderRight: '2px solid var(--accent)', marginBottom: 12 }}
+                      >
+                        Senior Data Engineer @ Microsoft
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        transition={{ delay: 1.6, duration: 1.5, ease: "linear" }}
+                        style={{ color: '#666', borderLeft: '2px solid rgba(255,255,255,0.1)', paddingLeft: 12, fontSize: '0.8rem' }}
+                      >
+                        <div>- Build & maintain scalable pipelines</div>
+                        <div>- Optimize Spark & Airflow clusters</div>
+                        <div>- Lead architecture reviews</div>
+                      </motion.div>
+                    </div>
+                  )}
+
+                  {activeStep === 1 && (
+                    <div style={{ textAlign: 'center' }}>
+                      <motion.div
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        style={{ marginBottom: 20, display: 'inline-block' }}
+                      >
+                        <UploadCloud size={64} color="var(--accent)" strokeWidth={1.5} />
+                      </motion.div>
+                      <h4 style={{ color: '#fff', marginBottom: 8 }}>Processing Resumes</h4>
+                      <div style={{ width: '100%', height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: '100%' }}
+                          transition={{ duration: 3, ease: "easeInOut" }}
+                          style={{ height: '100%', background: 'var(--accent)' }}
+                        />
+                      </div>
+                      <div style={{ marginTop: 12, color: '#aaa', fontSize: '0.8rem' }}>Extracting semantic data from 10 files...</div>
+                    </div>
+                  )}
+
+                  {activeStep === 2 && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      <div style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: 700, marginBottom: 8, letterSpacing: '0.1em' }}>ANALYSIS COMPLETE</div>
+                      {[
+                        { name: 'Tushar Bhardwaj', score: 94, match: 'Strong' },
+                        { name: 'Marcus Bell', score: 88, match: 'Strong' },
+                        { name: 'Alex Rivera', score: 72, match: 'Moderate' }
+                      ].map((item, i) => (
+                        <motion.div
+                          key={item.name}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          style={{
+                            background: 'rgba(255,255,255,0.03)',
+                            border: '1px solid rgba(255,255,255,0.06)',
+                            borderRadius: 12,
+                            padding: '12px 16px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <div style={{ color: '#fff', fontSize: '0.9rem', fontWeight: 600 }}>{item.name}</div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <div style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 700 }}>{item.score}%</div>
+                            <div style={{ fontSize: '0.7rem', background: i < 2 ? 'rgba(16, 185, 129, 0.1)' : 'rgba(250, 204, 21, 0.1)', color: i < 2 ? '#10b981' : '#facc15', padding: '2px 8px', borderRadius: 100, border: '1px solid currentColor' }}>{item.match}</div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>
 
       {/* ── FAQ Section ────────────────────────────────────────────── */}
       <section style={{ padding: '80px 32px', maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1.2fr', 
-          gap: 60, 
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1.2fr',
+          gap: 60,
           alignItems: 'start',
           border: '1px solid var(--border)',
           borderRadius: 32,
@@ -364,12 +466,12 @@ export default function LandingPage() {
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: 12 }}>
               FAQ
             </div>
-            <h2 style={{ 
+            <h2 style={{
               fontFamily: 'var(--font-space-grotesk)',
-              fontSize: '2.5rem', 
-              fontWeight: 800, 
-              lineHeight: 1.1, 
-              letterSpacing: '-0.04em' 
+              fontSize: '2.5rem',
+              fontWeight: 800,
+              lineHeight: 1.1,
+              letterSpacing: '-0.04em'
             }}>
               A few things people ask before hiring with AI.
             </h2>
@@ -380,10 +482,10 @@ export default function LandingPage() {
               { q: 'How accurate is the AI scoring?', a: 'Our scoring is based on deep semantic analysis of the job description vs the resume. It yields 95% consistency compared to manual expert reviews.' },
               { q: 'Can I export the ranked results?', a: 'Yes, you can download clinical reports and spreadsheets of your ranked candidates directly from the results page.' }
             ].map((faq, idx) => (
-              <FAQItem 
-                key={idx} 
-                question={faq.q} 
-                answer={faq.a} 
+              <FAQItem
+                key={idx}
+                question={faq.q}
+                answer={faq.a}
                 isOpen={openIndex === idx}
                 onToggle={() => setOpenIndex(openIndex === idx ? null : idx)}
               />
@@ -399,10 +501,10 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ 
-              fontSize: 'clamp(3rem, 12vw, 8rem)', 
-              fontWeight: 800, 
-              lineHeight: 0.9, 
+            style={{
+              fontSize: 'clamp(3rem, 12vw, 8rem)',
+              fontWeight: 800,
+              lineHeight: 0.9,
               letterSpacing: '-0.05em',
               marginBottom: 60
             }}
@@ -410,7 +512,7 @@ export default function LandingPage() {
             Built for those <br />
             who <span style={{ color: 'var(--accent)' }}>hire.</span>
           </motion.h2>
-          
+
           <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '1.2rem' }}>
               <Search size={24} /> HireLens
@@ -427,12 +529,12 @@ export default function LandingPage() {
 
 function FAQItem({ question, answer, isOpen, onToggle }: { question: string, answer: string, isOpen: boolean, onToggle: () => void }) {
   return (
-    <div 
+    <div
       onClick={onToggle}
-      style={{ 
-        background: 'var(--bg-card)', 
-        borderRadius: 20, 
-        padding: '24px 32px', 
+      style={{
+        background: 'var(--bg-card)',
+        borderRadius: 20,
+        padding: '24px 32px',
         cursor: 'pointer',
         border: '1px solid var(--border)',
         transition: 'all 0.3s ease'
@@ -440,13 +542,13 @@ function FAQItem({ question, answer, isOpen, onToggle }: { question: string, ans
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'var(--text-primary)' }}>
         <h4 style={{ fontSize: '1.1rem', fontWeight: 600 }}>{question}</h4>
-        <div style={{ 
-          width: 32, 
-          height: 32, 
-          borderRadius: '50%', 
-          border: '1px solid var(--border)', 
-          display: 'flex', 
-          alignItems: 'center', 
+        <div style={{
+          width: 32,
+          height: 32,
+          borderRadius: '50%',
+          border: '1px solid var(--border)',
+          display: 'flex',
+          alignItems: 'center',
           justifyContent: 'center',
           transition: 'all 0.3s ease',
           background: isOpen ? 'var(--bg-card-hover)' : 'transparent'
@@ -455,7 +557,7 @@ function FAQItem({ question, answer, isOpen, onToggle }: { question: string, ans
         </div>
       </div>
       {isOpen && (
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           style={{ color: 'var(--text-secondary)', marginTop: 16, lineHeight: 1.6, fontSize: '0.95rem' }}
