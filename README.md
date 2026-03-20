@@ -30,9 +30,8 @@
 
 ## Demo
 
-<p align="center">
-  <video src="./public/demo.mp4" width="800" controls playbackrate="1.25"></video>
-</p>
+https://github.com/user-attachments/assets/882f23a5-433a-4fb4-8f54-3923c03800f9
+
 
 ---
 
