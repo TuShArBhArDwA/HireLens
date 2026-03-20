@@ -31,7 +31,11 @@
 ## Demo
 
 <p align="center">
-  <video src="https://res.cloudinary.com/dkdhdiqy0/video/upload/v1774028074/demo_p7uk9j.mp4" width="800" controls playbackrate="1.25"></video>
+  <a href="https://res.cloudinary.com/dkdhdiqy0/video/upload/v1774028074/demo_p7uk9j.mp4">
+    <video src="https://res.cloudinary.com/dkdhdiqy0/video/upload/v1774028074/demo_p7uk9j.mp4" width="800" controls muted></video>
+  </a>
+  <br/>
+  <em>(Click to view if the player doesn't load)</em>
 </p>
 
 ---
