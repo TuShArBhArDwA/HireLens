@@ -25,7 +25,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: { colorPrimary: '#5c52ff' },
+      }}
+    >
       <html lang="en" suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable}`}>
         <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>

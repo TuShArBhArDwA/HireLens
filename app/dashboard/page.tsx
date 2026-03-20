@@ -52,8 +52,13 @@ export default function DashboardPage() {
         </motion.div>
 
         {loading ? (
-          <div className="loading-overlay">
-            <div className="spinner" />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '40vh', gap: 24 }}>
+            <div className="ai-loader-container">
+              <div className="ai-loader-ring" />
+              <div className="ai-loader-ring" />
+              <div className="ai-loader-ring" />
+              <div className="ai-loader-pulse" />
+            </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>Loading sessions…</p>
           </div>
         ) : sessions.length === 0 ? (

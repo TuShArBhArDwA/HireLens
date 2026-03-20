@@ -435,20 +435,16 @@ export default function ScreenPage() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  padding: '24px 28px', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255,255,255,0.08)',
-                  backdropFilter: 'blur(12px)', borderRadius: 16, display: 'flex', alignItems: 'center', gap: 20, width: '100%', maxWidth: 420,
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                  padding: '28px 32px', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)',
+                  backdropFilter: 'blur(var(--glass-blur))', borderRadius: 20, display: 'flex', alignItems: 'center', gap: 24, width: '100%', maxWidth: 460,
+                  boxShadow: 'var(--glass-shadow)'
                 }}
               >
-                <div style={{ position: 'relative', display: 'flex' }}>
-                  <motion.div animate={{ rotate: 360 }} transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }} style={{ display: 'flex', zIndex: 1 }}>
-                    <Loader2 size={24} style={{ color: 'var(--accent)' }} />
-                  </motion.div>
-                  <motion.div
-                    animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    style={{ position: 'absolute', inset: -8, background: 'var(--accent)', borderRadius: '50%', zIndex: 0, opacity: 0.2 }}
-                  />
+                <div className="ai-loader-container">
+                  <div className="ai-loader-ring" />
+                  <div className="ai-loader-ring" />
+                  <div className="ai-loader-ring" />
+                  <div className="ai-loader-pulse" />
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <AnimatePresence mode="wait">
