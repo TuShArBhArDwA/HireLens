@@ -91,14 +91,14 @@ function CandidateDetailCard({ c, onClose }: { c: Candidate; onClose: () => void
     >
       <motion.div
         className="modal-content"
-        style={{ padding: 0, overflow: 'hidden', borderRadius: 24, border: '1px solid rgba(255,255,255,0.1)' }}
+        style={{ padding: 0, borderRadius: 24, border: '1px solid rgba(255,255,255,0.1)' }}
         initial={{ opacity: 0, y: 32, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 32, scale: 0.96 }}
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ padding: '32px 32px 24px' }}>
+        <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 28 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
               <div style={{ position: 'relative', width: 84, height: 84, flexShrink: 0 }}>
@@ -117,7 +117,9 @@ function CandidateDetailCard({ c, onClose }: { c: Candidate; onClose: () => void
             </div>
             <button className="modal-close" onClick={onClose} style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '50%', background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, color: 'var(--text-muted)' }}>×</button>
           </div>
+        </div>
 
+        <div className="modal-body">
           {c.summary && (
             <div style={{
               background: 'var(--glass-bg)',
@@ -133,14 +135,14 @@ function CandidateDetailCard({ c, onClose }: { c: Candidate; onClose: () => void
             </div>
           )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 1px minmax(0,1fr)', gap: 32, background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 20, padding: 24 }}>
+          <div className="modal-sg-grid">
             <div className="sg-section">
               <h4 className="strengths-title" style={{ fontSize: '0.75rem', marginBottom: 12 }}>Key Strengths</h4>
               <ul className="sg-list" style={{ gap: 6 }}>
                 {c.strengths.map((s, i) => <li key={i} className="strength-item" style={{ padding: '8px 12px' }}>{s}</li>)}
               </ul>
             </div>
-            <div style={{ background: 'var(--border)' }} />
+            <div className="sg-divider" />
             <div className="sg-section">
               <h4 className="gaps-title" style={{ fontSize: '0.75rem', marginBottom: 12 }}>Key Gaps</h4>
               <ul className="sg-list" style={{ gap: 6 }}>
@@ -150,8 +152,9 @@ function CandidateDetailCard({ c, onClose }: { c: Candidate; onClose: () => void
           </div>
         </div>
 
+
         {c.file_url && (
-          <div style={{ padding: '20px 32px', background: 'var(--glass-bg-hover)', borderTop: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="modal-footer">
             <a
               href={getViewerUrl(c.file_url)}
               target="_blank"

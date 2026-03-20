@@ -105,10 +105,8 @@ export default function DashboardPage() {
                       <div className="session-arrow"><ArrowRight size={16} /></div>
                     </div>
                     
-                    <div style={{ flex: 1, minWidth: 0, marginTop: 4 }}>
-                      <div className="session-title" style={{
-                        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-                      }}>
+                    <div style={{ flex: 1, minWidth: 0, marginTop: 12 }}>
+                      <div className="session-title">
                         {s.jd_title}
                       </div>
                     </div>

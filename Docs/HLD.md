@@ -97,7 +97,25 @@ Results Dashboard (with Motion animations)
 | Scalability | Groq API handles concurrent requests; Supabase scales automatically |
 | Reliability | Each resume processed independently (one failure doesn't kill session) |
 | Performance | Groq llama-3.3-70b: ~1–2s per resume |
-| Usability | Motion animations, clear UX with drag-and-drop |
+| Usability | Premium glassmorphism, responsive adaptive layouts, and orchestrated Motion animations |
+
+---
+
+## UI/UX Design Strategy
+
+### 1. Aesthetic Principles
+- **Glassmorphism**: Use of `backdrop-filter: blur()`, semi-transparent backgrounds (`var(--glass-bg)`), and thin borders to create a modern, depth-oriented interface.
+- **Dark Mode First**: High-contrast, accessibility-focused dark theme with vibrant accent highlights (`#4f46e5`).
+- **Space Grotesk Typography**: Modern, technical feel for headers; optimized Inter/System fonts for readability.
+
+### 2. Responsiveness (Mobile Adaptive)
+- **Fluid Grids**: Use of `grid-template-columns: repeat(auto-fill, minmax(...))` for dashboards and results to ensure seamless scaling from 320px to 2560px.
+- **Adaptive Paddings**: Utility classes (`.section-container`) that adjust internal spacing based on viewport width.
+- **Sticky Actions**: Critical UI elements (like "View Resume" in modals) are pinned to the viewport to ensure constant accessibility on small screens.
+
+### 3. Animation Orchestration
+- **Sequential Loading**: Staggered list animations using `motion` variants to reduce perceived latency.
+- **Contextual Meaning**: Expanding accordions (FAQ) and score rings provide immediate visual feedback for state changes.
 
 ---
 

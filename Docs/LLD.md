@@ -211,11 +211,23 @@ CREATE TABLE candidates (
 - Motion animate from 0 → final score on mount
 - Color: green (≥75), amber (50–74), red (<50)
 
-### `CandidateCard.tsx`
-- Props: `candidate: Candidate`
-- Shows: rank badge, name, score ring, recommendation badge
-- Expandable to show strengths/gaps list
-- Motion: fade-in + slide-up on enter
+### `CandidateDetailCard` (in `results/page.tsx`)
+- Logic: Refactored as a flex-column modal container.
+- **`modal-header`**: Contains Score, Name, Close button. Fixed height.
+- **`modal-body`**: Contains Summary, Strengths, Gaps. `flex: 1; overflow-y: auto;`.
+- **`modal-footer`**: Sticky/fixed footer containing the "View Resume" button to ensure constant accessibility.
+- Motion: Fade-in + Slide-up entry with staggered child elements.
+
+### `FAQItem.tsx` (in `page.tsx`)
+- Interactive accordion component.
+- Uses **`AnimatePresence`** for height-based transition (`height: 0` → `height: auto`).
+- `overflow: hidden` on the motion wrapper to ensure smooth sliding without layout jumps.
+- Exit animation for closing states.
+
+### `DashboardItem` (in `dashboard/page.tsx`)
+- Session summary card.
+- **Session Title**: Uses CSS `line-clamp: 2` and `word-break: break-word` to handle extra-long job titles gracefully.
+- Layout: Adaptive flex layout that ensures consistent icon placement regardless of title wrapping.
 
 ### `RankingTable.tsx`
 - Sortable columns: rank, score, recommendation

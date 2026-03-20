@@ -170,15 +170,8 @@ export default function LandingPage() {
       </section>
 
       {/* ── Demo Video ─────────────────────────────────────────────── */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '80px 32px 120px', position: 'relative', zIndex: 1 }}>
-        <div style={{
-          border: '1px solid var(--border)',
-          borderRadius: 32,
-          padding: '80px 60px',
-          background: 'var(--bg-card)',
-          backdropFilter: 'blur(10px)',
-          position: 'relative'
-        }}>
+      <section className="section-container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="section-card-premium">
           <motion.div
             style={{ textAlign: 'center', marginBottom: 48 }}
             initial={{ opacity: 0, y: 16 }}
@@ -231,7 +224,7 @@ export default function LandingPage() {
                 overflow: 'hidden',
               }}>
                 <video
-                  src="/demo.mp4"
+                  src="https://res.cloudinary.com/dkdhdiqy0/video/upload/v1774028074/demo_p7uk9j.mp4"
                   poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Crect width='1600' height='900' fill='%23000'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='32' font-weight='600' fill='%23333' text-anchor='middle' dy='.3em'%3E[ Demo Video ]%3C/text%3E%3C/svg%3E"
                   autoPlay muted loop playsInline
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
@@ -279,18 +272,8 @@ export default function LandingPage() {
       </section>
 
       {/* ── How It Works (Split Layout) ─────────────────────────────── */}
-      <section style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div style={{
-          background: 'var(--bg-card)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid var(--border)',
-          borderRadius: 32,
-          padding: '80px 60px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 80,
-          alignItems: 'center'
-        }}>
+      <section className="section-container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="section-card-premium split-layout">
           <div>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: 12 }}>
               Daily Workflow
@@ -450,18 +433,8 @@ export default function LandingPage() {
       </section>
 
       {/* ── FAQ Section ────────────────────────────────────────────── */}
-      <section style={{ padding: '80px 32px', maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1.2fr',
-          gap: 60,
-          alignItems: 'start',
-          border: '1px solid var(--border)',
-          borderRadius: 32,
-          padding: '80px 60px',
-          background: 'var(--bg-card)',
-          backdropFilter: 'blur(10px)'
-        }}>
+      <section className="section-container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="section-card-premium split-layout-faq">
           <div>
             <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: 12 }}>
               FAQ
@@ -556,15 +529,21 @@ function FAQItem({ question, answer, isOpen, onToggle }: { question: string, ans
           {isOpen ? <X size={16} color="var(--text-muted)" /> : <Plus size={16} color="var(--text-muted)" />}
         </div>
       </div>
-      {isOpen && (
-        <motion.p
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          style={{ color: 'var(--text-secondary)', marginTop: 16, lineHeight: 1.6, fontSize: '0.95rem' }}
-        >
-          {answer}
-        </motion.p>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <p style={{ color: 'var(--text-secondary)', marginTop: 16, lineHeight: 1.6, fontSize: '0.95rem' }}>
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

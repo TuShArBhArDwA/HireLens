@@ -28,6 +28,14 @@
 
 ---
 
+## Demo
+
+<p align="center">
+  <video src="https://res.cloudinary.com/dkdhdiqy0/video/upload/v1774028074/demo_p7uk9j.mp4" width="800" controls playbackrate="1.25"></video>
+</p>
+
+---
+
 ## What It Does
 
 **HireLens** is a fully automated AI resume screening pipeline. HR teams upload a Job Description + up to 10 resumes and receive:
@@ -40,6 +48,15 @@
 | **Key Gaps (2–3)** | What the candidate is missing |
 | **Recommendation** | Strong Fit / Moderate Fit / Not Fit |
 | **Recruiter Summary** | 2-sentence AI-generated note |
+
+---
+
+## Premium UI/UX Features
+
+- **Mobile First & Adaptive**: Pure vanilla CSS responsiveness that adjusts grid layouts, font sizes, and paddings for a seamless experience on any device.
+- **Sticky Actions**: Important call-to-actions (like the "View Resume" button) are pinned to ensure they are always accessible, even with heavy content.
+- **Orchestrated Animations**: Smooth transitions for FAQs, staggered list entries, and dynamic score rings powered by `motion/react`.
+- **Glassmorphic Design**: A modern, high-end "frosted glass" aesthetic with dark mode optimization and sharp typography.
 
 ---
 
