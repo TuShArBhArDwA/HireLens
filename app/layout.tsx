@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { Footer } from '@/components/Footer';
 import '@/app/globals.css';
 
 const inter = Inter({
@@ -36,7 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
               {children}
             </div>
-            <Footer />
           </ThemeProvider>
         </body>
       </html>

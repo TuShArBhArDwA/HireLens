@@ -160,7 +160,7 @@ function CandidateDetailCard({ c, onClose }: { c: Candidate; onClose: () => void
               className="btn btn-primary"
               style={{ gap: 10, padding: '10px 20px' }}
             >
-              <FileText size={16} /> View Resume PDF
+              <FileText size={16} /> View Resume
             </a>
           </div>
         )}
