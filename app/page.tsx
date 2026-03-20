@@ -224,7 +224,7 @@ export default function LandingPage() {
                 overflow: 'hidden',
               }}>
                 <video
-                  src="https://res.cloudinary.com/dkdhdiqy0/video/upload/v1774028074/demo_p7uk9j.mp4"
+                  src="/demo.mp4"
                   poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='900'%3E%3Crect width='1600' height='900' fill='%23000'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='32' font-weight='600' fill='%23333' text-anchor='middle' dy='.3em'%3E[ Demo Video ]%3C/text%3E%3C/svg%3E"
                   autoPlay muted loop playsInline
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
