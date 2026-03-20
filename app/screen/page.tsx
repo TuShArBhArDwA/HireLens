@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import Navbar from '@/components/Navbar';
-import { Loader2, UploadCloud, FileText, Trash2 } from 'lucide-react';
+import { UploadCloud, FileText, Trash2 } from 'lucide-react';
 
 const SAMPLE_JD = `Senior Data Engineer – TechCorp Inc.
 

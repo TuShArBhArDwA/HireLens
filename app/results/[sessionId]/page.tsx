@@ -61,7 +61,6 @@ function RecommendationBadge({ rec }: { rec: string }) {
 function StatCounter({ value, suffix = '' }: { value: number; suffix?: string }) {
   const [current, setCurrent] = useState(0);
   useEffect(() => {
-    let start = 0;
     const dur = 1500;
     const end = value;
     if (end === 0) return;

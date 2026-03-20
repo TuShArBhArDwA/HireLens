@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useAuth } from '@clerk/nextjs';
-import { Search, FileText, Bot, BarChart3, ArrowRight, Sparkles, CheckCircle2, Zap, Plus, X } from 'lucide-react';
+import { Search, FileText, Bot, BarChart3, ArrowRight, CheckCircle2, Plus, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useState } from 'react';
 
@@ -334,11 +334,11 @@ export default function LandingPage() {
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840' }} />
               </div>
               <div style={{ color: '#fff', fontFamily: 'monospace', fontSize: '0.85rem', lineHeight: 1.8 }}>
-                <div style={{ color: 'var(--accent)' }}>// Initialize screening</div>
+                <div style={{ color: 'var(--accent)' }}>{'// Initialize screening'}</div>
                 <div>const session = await HireLens.init();</div>
-                <div style={{ color: '#aaa', marginTop: 12 }}>// Upload 12 resumes</div>
+                <div style={{ color: '#aaa', marginTop: 12 }}>{'// Upload 12 resumes'}</div>
                 <div>await session.upload(resumes);</div>
-                <div style={{ color: '#aaa', marginTop: 12 }}>// Instant rankings</div>
+                <div style={{ color: '#aaa', marginTop: 12 }}>{'// Instant rankings'}</div>
                 <div>const results = await session.getRankings();</div>
                 <div style={{ color: '#28c840', marginTop: 12 }}>✓ Screening completed in 4.2s</div>
               </div>
