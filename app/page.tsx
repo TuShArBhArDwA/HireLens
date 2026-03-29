@@ -398,8 +398,8 @@ export default function LandingPage() {
                       <div style={{ color: 'var(--accent)', fontSize: '0.8rem', fontWeight: 700, marginBottom: 8, letterSpacing: '0.1em' }}>ANALYSIS COMPLETE</div>
                       {[
                         { name: 'Tushar Bhardwaj', score: 94, match: 'Strong' },
-                        { name: 'Marcus Bell', score: 88, match: 'Strong' },
-                        { name: 'Alex Rivera', score: 72, match: 'Moderate' }
+                        { name: 'Ruvaid Ahmad', score: 88, match: 'Strong' },
+                        { name: 'Sweta Shukla', score: 72, match: 'Moderate' }
                       ].map((item, i) => (
                         <motion.div
                           key={item.name}
